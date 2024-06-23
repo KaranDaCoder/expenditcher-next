@@ -13,17 +13,26 @@ import { redirect } from 'next/navigation';
 const Dashboard = async () => {
   const session = await auth();
   if (!session) redirect("/login");
-  const { total: allExpenses, expense_total } = await getAllExpenses('');
-  const { total: completedExpenses } = await getAllExpenses('Completed');
-  const { total: pendingExpenses } = await getAllExpenses('Pending');
-  const { total: canceledExpenses } = await getAllExpenses('Canceled');
-  const { total: paymentAccounts, result } = await getPaymentModes();
-
-  console.log(`all expenses == ${allExpenses} and expense Total ${expense_total}`)
+  // const { total: allExpenses, expense_total } = await getAllExpenses('');
+  // const { total: completedExpenses } = await getAllExpenses('Completed');
+  // const { total: pendingExpenses } = await getAllExpenses('Pending');
+  // const { total: canceledExpenses } = await getAllExpenses('Canceled');
+  // const { total: paymentAccounts, result } = await getPaymentModes();
+  const allExpenses = await getAllExpenses('')
+  const completedExpenses = await getAllExpenses('Completed')
+  const pendingExpenses = await getAllExpenses('Pending')
+  const canceledExpenses = await getAllExpenses('Canceled')
+  const paymentAccounts = await getPaymentModes()
+  console.log(`allExpenses : ${JSON.stringify(allExpenses)}`)
+  console.log(`completedExpenses : ${JSON.stringify(completedExpenses)}`)
+  console.log(`pendingExpenses : ${JSON.stringify(pendingExpenses)}`)
+  console.log(`canceledExpenses : ${JSON.stringify(canceledExpenses)}`)
+  console.log(`paymentAccounts : ${JSON.stringify(paymentAccounts)}`)
+  // console.log(`all expenses == ${allExpenses} and expense Total ${expense_total}`)
 
   return (
     <main className='flex flex-col w-full h-full gap-6'>
-       <div className='flex items-center w-full gap-2 text-sm lg:text-base'>
+       {/* <div className='flex items-center w-full gap-2 text-sm lg:text-base'>
         <Link href={"/dashboard"}>Dashboard</Link>
       </div>
       <div className="flex items-center w-full h-14">
@@ -46,7 +55,7 @@ const Dashboard = async () => {
           </div>
       ))}
       
-      </div> 
+      </div>  */}
     </main>
   )
 }
