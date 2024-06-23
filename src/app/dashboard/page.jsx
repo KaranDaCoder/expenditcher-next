@@ -13,22 +13,17 @@ import { redirect } from 'next/navigation';
 const Dashboard = async () => {
   const session = await auth();
   if (!session) redirect("/login");
-  // const { total: allExpenses, expense_total } = await getAllExpenses('');
-  // const { total: completedExpenses } = await getAllExpenses('Completed');
-  // const { total: pendingExpenses } = await getAllExpenses('Pending');
-  // const { total: canceledExpenses } = await getAllExpenses('Canceled');
-  // const { total: paymentAccounts, result } = await getPaymentModes();
   const allExpenses = await getAllExpenses('')
   const completedExpenses = await getAllExpenses('Completed')
   const pendingExpenses = await getAllExpenses('Pending')
   const canceledExpenses = await getAllExpenses('Canceled')
   const paymentAccounts = await getPaymentModes()
-  console.log(`allExpenses : ${JSON.stringify(allExpenses)}`)
-  console.log(`completedExpenses : ${JSON.stringify(completedExpenses)}`)
-  console.log(`pendingExpenses : ${JSON.stringify(pendingExpenses)}`)
-  console.log(`canceledExpenses : ${JSON.stringify(canceledExpenses)}`)
-  console.log(`paymentAccounts : ${JSON.stringify(paymentAccounts)}`)
-  // console.log(`all expenses == ${allExpenses} and expense Total ${expense_total}`)
+  // console.log(`allExpenses : ${JSON.stringify(allExpenses)}`)
+  // console.log(`completedExpenses : ${JSON.stringify(completedExpenses)}`)
+  // console.log(`pendingExpenses : ${JSON.stringify(pendingExpenses)}`)
+  // console.log(`canceledExpenses : ${JSON.stringify(canceledExpenses)}`)
+  // console.log(`paymentAccounts : ${JSON.stringify(paymentAccounts)}`)
+  // // console.log(`all expenses == ${allExpenses} and expense Total ${expense_total}`)
 
   return (
     <main className='flex flex-col w-full h-full gap-6'>
@@ -44,18 +39,18 @@ const Dashboard = async () => {
         <TransactionStatuses completedExpenses={completedExpenses.total} pendingExpenses={pendingExpenses.total} canceledExpenses={canceledExpenses.total} allExpenses={allExpenses.total} />
         <MostExpensiveTx />
       </div >
-     {/* <div className='flex items-center justify-between w-full'>
-      <h2 className='text-xl lg:text-2xl'>Your Payment Accounts ({paymentAccounts})</h2>
+      <div className='flex items-center justify-between w-full'>
+      <h2 className='text-xl lg:text-2xl'>Your Payment Accounts ({paymentAccounts.total})</h2>
       <Link href={"/payment-modes"} className='hidden text-sm text-fuchsia-800 lg:flex'>Manage Payment Accounts</Link>
       </div>
       <div className='flex items-center justify-start w-full gap-4 py-2 overflow-x-auto h-60 lg:h-72'>
-      {result?.map(p_m => (
+        {paymentAccounts?.result.map(p_m => (
         <div className='flex-none w-full h-full border shadow-md rounded-xl lg:w-1/3 hover:border-green-700' key={p_m._id}>
             <PaymentAccountCards p_m_name={p_m.payment_mode_name} pm_id={p_m._id} />
           </div>
       ))}
       
-      </div>  */}
+      </div>
     </main>
   )
 }

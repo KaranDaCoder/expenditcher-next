@@ -1,11 +1,9 @@
 import { cookies, headers } from 'next/headers';
 
   export const getAllExpenses = async (status) => {
-    console.log(`GETTING ALL EXPENSES!`);
     let request = '';
     try {
       if (status !== undefined && status !== '') {
-        console.log(`INSIDE IF!!!`);
         request = await fetch(
           `${process.env.AUTH_URL}/api/expense?status=${status}`,
           {
@@ -16,8 +14,6 @@ import { cookies, headers } from 'next/headers';
           }
         );
       } else {
-        console.log(`INSIDE ELSE... ${process.env.AUTH_URL}`);
-        console.log(cookies());
         request = await fetch(`${process.env.AUTH_URL}/api/expense`, {
           method: 'GET',
           cache: 'no-cache',
@@ -42,7 +38,7 @@ export const getPaymentModes = async () => {
     const request = await fetch(`${process.env.AUTH_URL}/api/payment-modes`, {
       method: 'GET',
       cache: 'no-cache',
-      headers: headers(),
+      headers: { ContentType: 'application/json', cookie: cookies() },
     });
     if (request.ok) {
       const { total, result } = await request.json();

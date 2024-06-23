@@ -1,17 +1,17 @@
 'use client'
 import { categories_array } from '@/lib/categoryList';
 import { useState } from 'react';
-import moment from 'moment';
 import { useRouter } from 'next/navigation';
 
 const AddExpenseForm = ({result, owner_id}) => {
+ 
  const router = useRouter();
  const [expense , setExpense] = useState({
    category : 'Other',
    name : '',
    amount: '',
    state: '',
-   payment_mode_id: '',
+   payment_mode_id: result[0]._id,
    date: new Date(),
    status: 'Completed',
    description: '',
