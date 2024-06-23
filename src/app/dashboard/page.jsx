@@ -13,19 +13,17 @@ import { redirect } from 'next/navigation';
 const Dashboard = async () => {
   const session = await auth();
   if (!session) redirect("/login");
-  console.log(`Whats here?`)
   const { total: allExpenses, expense_total } = await getAllExpenses('');
-  // const { total: completedExpenses } = await getAllExpenses('Completed');
-  // const { total: pendingExpenses } = await getAllExpenses('Pending');
-  // const { total: canceledExpenses } = await getAllExpenses('Canceled');
-  // const { total: paymentAccounts, result } = await getPaymentModes();
+  const { total: completedExpenses } = await getAllExpenses('Completed');
+  const { total: pendingExpenses } = await getAllExpenses('Pending');
+  const { total: canceledExpenses } = await getAllExpenses('Canceled');
+  const { total: paymentAccounts, result } = await getPaymentModes();
 
-  // const allExpenses = await getAllExpenses('');
   console.log(`all expenses == ${allExpenses} and expense Total ${expense_total}`)
 
   return (
     <main className='flex flex-col w-full h-full gap-6'>
-      {/* <div className='flex items-center w-full gap-2 text-sm lg:text-base'>
+       <div className='flex items-center w-full gap-2 text-sm lg:text-base'>
         <Link href={"/dashboard"}>Dashboard</Link>
       </div>
       <div className="flex items-center w-full h-14">
@@ -48,7 +46,7 @@ const Dashboard = async () => {
           </div>
       ))}
       
-      </div> */}
+      </div> 
     </main>
   )
 }
