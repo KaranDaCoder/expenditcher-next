@@ -10,6 +10,7 @@ import { redirect } from 'next/navigation';
 const Dashboard = async () => {
   const session = await auth();
   if (!session) redirect("/login");
+  console.log(`Whats here?`)
   const { total: allExpenses, expense_total } = await getAllExpenses();
   const { total: completedExpenses } = await getAllExpenses('Completed');
   const { total: pendingExpenses } = await getAllExpenses('Pending');
