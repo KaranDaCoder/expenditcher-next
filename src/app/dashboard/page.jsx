@@ -32,19 +32,19 @@ const Dashboard = async () => {
 
   return (
     <main className='flex flex-col w-full h-full gap-6'>
-       {/* <div className='flex items-center w-full gap-2 text-sm lg:text-base'>
+        <div className='flex items-center w-full gap-2 text-sm lg:text-base'>
         <Link href={"/dashboard"}>Dashboard</Link>
       </div>
       <div className="flex items-center w-full h-14">
         <h2 className="w-full text-4xl tracking-wide lg:text-5xl">Hello, {session?.user?.name || 'User'}.</h2>
       </div>
 
-      <div className='grid w-full h-full grid-cols-1 gap-2 lg:grid-cols-3'>
-        <AtAGlance allExpenses={allExpenses} expense_total={expense_total} />
-        <TransactionStatuses completedExpenses={completedExpenses} pendingExpenses={pendingExpenses} canceledExpenses={canceledExpenses} allExpenses={allExpenses} />
+   <div className='grid w-full h-full grid-cols-1 gap-2 lg:grid-cols-3'>
+        <AtAGlance allExpenses={allExpenses.total} expense_total={allExpenses.expense_total} />
+        <TransactionStatuses completedExpenses={completedExpenses.total} pendingExpenses={pendingExpenses.total} canceledExpenses={canceledExpenses.total} allExpenses={allExpenses.total} />
         <MostExpensiveTx />
       </div >
-      <div className='flex items-center justify-between w-full'>
+     {/* <div className='flex items-center justify-between w-full'>
       <h2 className='text-xl lg:text-2xl'>Your Payment Accounts ({paymentAccounts})</h2>
       <Link href={"/payment-modes"} className='hidden text-sm text-fuchsia-800 lg:flex'>Manage Payment Accounts</Link>
       </div>
