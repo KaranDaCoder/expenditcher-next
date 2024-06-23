@@ -9,7 +9,8 @@ export const getAllExpenses = async (status) => {
         {
           method: 'GET',
           cache: 'no-cache',
-          headers: headers(),
+          credentials: 'same-origin',
+          headers: { ContentType: 'application/json', headers: headers() },
         }
       );
     } else {
