@@ -16,7 +16,6 @@ const Dashboard = async () => {
   const { total: canceledExpenses } = await getAllExpenses('Canceled');
   const { total: paymentAccounts, result } = await getPaymentModes();
 
-  console.log(expense_total, `On Dashboard!`)
   return (
     <main className='flex flex-col w-full h-full gap-6'>
       <div className='flex items-center w-full gap-2 text-sm lg:text-base'>
