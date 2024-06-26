@@ -3,7 +3,6 @@ import Google from 'next-auth/providers/google';
 import { connectDb } from '@/lib/dbConnect';
 import User from '@/models/User';
 import PaymentMode from './models/PaymentMode';
-import { cookies } from 'next/headers';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -13,19 +12,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
+    async session({ session }) {
       await connectDb();
       const curr_session = await User.findOne({ email: session?.user?.email });
       if (!curr_session) {
         return;
       }
       session.user._id = curr_session._id.toString();
-       session.user.username = curr_session.username.toString();
-       const cookie_auth_js_session = cookies().get(
-         'authjs.session-token'
-       ).value;
-       console.log(
-        `authjs.session-token=${JSON.stringify(cookie_auth_js_session)}`);
+      session.user.username = curr_session.username.toString();
       return session;
     },
     async signIn({ profile }) {

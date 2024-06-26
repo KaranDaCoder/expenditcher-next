@@ -3,7 +3,6 @@ import AtAGlance from '@/components/AtAGlance';
 import MostExpensiveTx from '@/components/MostExpensiveTx';
 import PaymentAccountCards from '@/components/PaymentAccountCards';
 import TransactionStatuses from '@/components/TransactionStatuses';
-import { cookies } from 'next/headers';
 import { getAllExpenses, getPaymentModes } from '@/lib/apiRequests';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -18,12 +17,7 @@ const Dashboard = async () => {
   const pendingExpenses = await getAllExpenses('Pending')
   const canceledExpenses = await getAllExpenses('Canceled')
   const paymentAccounts = await getPaymentModes()
-  // console.log(`allExpenses : ${JSON.stringify(allExpenses)}`)
-  // console.log(`completedExpenses : ${JSON.stringify(completedExpenses)}`)
-  // console.log(`pendingExpenses : ${JSON.stringify(pendingExpenses)}`)
-  // console.log(`canceledExpenses : ${JSON.stringify(canceledExpenses)}`)
-  // console.log(`paymentAccounts : ${JSON.stringify(paymentAccounts)}`)
-  // // console.log(`all expenses == ${allExpenses} and expense Total ${expense_total}`)
+
 
   return (
     <main className='flex flex-col w-full h-full gap-6'>
