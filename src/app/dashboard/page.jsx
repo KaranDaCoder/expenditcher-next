@@ -31,7 +31,7 @@ const Dashboard = async () => {
         <Link href={"/dashboard"}>Dashboard</Link>
       </div>
       <div className="flex items-center w-full h-14">
-        <h2 className="w-full text-4xl tracking-wide lg:text-5xl">Hello, {session?.user?.name || 'User'}.</h2>
+        <h2 className="w-full text-4xl tracking-wide lg:text-5xl">Hello, <span className='uppercase'>{session?.user?.name || 'User'}.</span> </h2>
       </div>
 
    <div className='grid w-full h-full grid-cols-1 gap-2 lg:grid-cols-3'>

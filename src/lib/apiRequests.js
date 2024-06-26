@@ -1,6 +1,7 @@
-import { cookies, headers } from 'next/headers';
+import { cookies } from 'next/headers';
 
   export const getAllExpenses = async (status) => {
+    
     let request = '';
     try {
       if (status !== undefined && status !== '') {
@@ -25,7 +26,6 @@ import { cookies, headers } from 'next/headers';
         const { total, expense_total, result } = await request.json();
         return { total, expense_total, result };
       } else {
-        console.log(request);
         throw new Error(request.error);
       }
     } catch (error) {

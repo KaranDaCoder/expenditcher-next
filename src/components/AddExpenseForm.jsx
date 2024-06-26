@@ -11,7 +11,7 @@ const AddExpenseForm = ({result, owner_id}) => {
    name : '',
    amount: '',
    state: '',
-   payment_mode_id: result[0]._id,
+   payment_mode_id: result[0]?._id,
    date: new Date(),
    status: 'Completed',
    description: '',
@@ -68,7 +68,7 @@ const AddExpenseForm = ({result, owner_id}) => {
   <form
    onSubmit={handleAddExpenseRequest}
    onReset={handleFormReset}
-   className='w-full h-full p-5 text-sm lg:p-10 text-slate-600'
+   className='w-full h-full p-5 text-sm bg-white lg:p-10 text-slate-600'
   >
    {/* Category Dropdown */}
    <div className='flex flex-col w-full h-auto gap-2 lg:gap-4'>
@@ -177,10 +177,10 @@ const AddExpenseForm = ({result, owner_id}) => {
     </button>
     <button
      type='submit'
-     className='w-1/2 px-4 py-3 text-white rounded-lg shadow-md bg-slate-800'
+         className={`${(expense.name.length < 5 || expense.amount === '' || expense.date === '') ? 'hidden' : 'block'} w-1/2 px-4 py-3 text-white rounded-lg shadow-md bg-slate-800`}
     >
      Add
-    </button>
+    </button> 
    </div>
   </form>
  )

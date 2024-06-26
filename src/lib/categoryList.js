@@ -4,11 +4,11 @@ import FlightIcon from '@mui/icons-material/Flight';
 export const categories_array = [
   {
     name: 'Travel',
-    icon: <FlightIcon color='success' fontSize='medium'/>,
+    icon: <FlightIcon color='success' fontSize='large'/>,
   },
   {
     name: 'Dining',
-    icon: <DiningIcon color='success' fontSize='medium' />,
+    icon: <DiningIcon color='success' fontSize='large' />,
   },
   {
     name: 'Automotive',
